@@ -4,7 +4,9 @@ module.exports = {
   execute: function command(client, interaction) {
     return new Promise(async (resolve, reject) => {
       try {
-        await interaction.reply("Pong");
+        client.modules.ImageAnswers.info("Pong!").then((img) => {
+          interaction.reply({files: [img]})
+        });
         resolve();
       } catch (error) {
         reject(error);
