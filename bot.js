@@ -37,7 +37,14 @@ client.on("interactionCreate", (interaction) => {
   } else {
     command.execute(client, interaction).catch((err) => {
       console.log(err);
-      interaction.reply({ ephemral: true, content: `Whoops an error occured: \n \`${err.toString()}\`` });
+      
+
+      client.modules.ImageAnswers.error(err.toString()).then((file)=>{
+        interaction.reply({files: [img]})
+      })
+      .catch((err)=>{
+        interaction.reply({ ephemeral: true, content: `A critical error occured: \n \`${err.toString()}\`` });
+      })
     });
   }
 });

@@ -40,26 +40,55 @@ moduleData = {
   name: "ImageAnswers",
 };
 
-moduleData.small = async function small(titleText, subtitleText) {
+moduleData.info = async function small(text) {
   return new Promise(async (resolve, reject) => {
     const canvas = Canvas.createCanvas(dimensions.small.x, dimensions.small.y);
     const context = canvas.getContext("2d");
-    const background = await Canvas.loadImage("assets/quick.png");
+    const background = await Canvas.loadImage("assets/info.png");
     context.drawImage(background, 0, 0, canvas.width, canvas.height);
 
-    context.font = applyText(canvas, "[" + titleText + "]", texts.title.fontSize);
+    context.font = applyText(canvas, text, texts.text.fontSize);
     context.fillStyle = "#ffffff";
-    context.fillText("[" + titleText + "]", texts.title.x, texts.title.y);
+    context.fillText(text, texts.text.x, texts.text.y);
 
-    context.font = applyText(canvas, subtitleText, texts.subtitle.fontSize);
-    context.fillStyle = "#ffffff";
-    context.fillText(subtitleText, texts.subtitle.x, texts.subtitle.y);
-
-    resolve(new djs.AttachmentBuilder(await canvas.encode("png"), { name: "small.png" }));
+    resolve(new djs.AttachmentBuilder(await canvas.encode("png"), { name: "information.png" }));
   });
 };
 
-moduleData.info = async function small(text) {
+
+moduleData.error = async function small(text) {
+  return new Promise(async (resolve, reject) => {
+    const canvas = Canvas.createCanvas(dimensions.small.x, dimensions.small.y);
+    const context = canvas.getContext("2d");
+    const background = await Canvas.loadImage("assets/error.png");
+    context.drawImage(background, 0, 0, canvas.width, canvas.height);
+
+    context.font = applyText(canvas, text, texts.text.fontSize);
+    context.fillStyle = "#ffffff";
+    context.fillText(text, texts.text.x, texts.text.y);
+
+    resolve(new djs.AttachmentBuilder(await canvas.encode("png"), { name: "error.png" }));
+  });
+};
+
+
+moduleData.warning = async function small(text) {
+  return new Promise(async (resolve, reject) => {
+    const canvas = Canvas.createCanvas(dimensions.small.x, dimensions.small.y);
+    const context = canvas.getContext("2d");
+    const background = await Canvas.loadImage("assets/warning.png");
+    context.drawImage(background, 0, 0, canvas.width, canvas.height);
+
+    context.font = applyText(canvas, text, texts.text.fontSize);
+    context.fillStyle = "#ffffff";
+    context.fillText(text, texts.text.x, texts.text.y);
+
+    resolve(new djs.AttachmentBuilder(await canvas.encode("png"), { name: "warning.png" }));
+  });
+};
+
+
+moduleData.blank = async function small(text) {
   return new Promise(async (resolve, reject) => {
     const canvas = Canvas.createCanvas(dimensions.small.x, dimensions.small.y);
     const context = canvas.getContext("2d");
@@ -70,7 +99,7 @@ moduleData.info = async function small(text) {
     context.fillStyle = "#ffffff";
     context.fillText(text, texts.text.x, texts.text.y);
 
-    resolve(new djs.AttachmentBuilder(await canvas.encode("png"), { name: "small.png" }));
+    resolve(new djs.AttachmentBuilder(await canvas.encode("png"), { name: "blank.png" }));
   });
 };
 

@@ -1,9 +1,9 @@
 module.exports = {
-  name: "Ping",
+  name: "user",
   description: "Reply pong to ping",
   autoRegister: false,
   commandData: {},
-  type: "slash",
+  type: "contextMenu",
   execute: function command(client, interaction) {
     return new Promise(async (resolve, reject) => {
       try {
